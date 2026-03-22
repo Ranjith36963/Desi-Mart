@@ -1,0 +1,34 @@
+name: desi_mart
+description: "Desi Mart — Your one stop shop for Indian foods and fresh vegetables"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_riverpod: ^2.6.1
+  go_router: ^14.8.0
+  firebase_core: ^3.12.0
+  firebase_auth: ^5.5.0
+  cloud_firestore: ^5.6.0
+  firebase_messaging: ^15.2.0
+  firebase_analytics: ^11.5.0
+  firebase_crashlytics: ^4.3.0
+  firebase_storage: ^12.4.0
+  firebase_remote_config: ^5.3.0
+  cached_network_image: ^3.4.1
+  flutter_secure_storage: ^9.2.4
+  google_fonts: ^6.2.1
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
