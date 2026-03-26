@@ -4,7 +4,29 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_colours.dart';
 
 abstract final class AppTheme {
+  /// Playfair Display for headings / display text.
+  static TextStyle playfair({
+    double fontSize = 20,
+    FontWeight fontWeight = FontWeight.w700,
+    Color color = AppColours.darkText,
+    double? height,
+    double? letterSpacing,
+  }) {
+    return GoogleFonts.playfairDisplay(
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      color: color,
+      height: height,
+      letterSpacing: letterSpacing,
+    );
+  }
+
   static ThemeData get lightTheme {
+    final bodyFont = GoogleFonts.poppinsTextTheme().apply(
+      bodyColor: AppColours.darkText,
+      displayColor: AppColours.darkText,
+    );
+
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
@@ -17,10 +39,7 @@ abstract final class AppTheme {
         brightness: Brightness.light,
       ),
       scaffoldBackgroundColor: AppColours.cream,
-      textTheme: GoogleFonts.poppinsTextTheme().apply(
-        bodyColor: AppColours.darkText,
-        displayColor: AppColours.darkText,
-      ),
+      textTheme: bodyFont,
       appBarTheme: AppBarTheme(
         backgroundColor: AppColours.cream,
         foregroundColor: AppColours.darkText,
@@ -32,7 +51,7 @@ abstract final class AppTheme {
           color: AppColours.darkText,
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColours.white,
         elevation: 2,
         shadowColor: AppColours.black.withValues(alpha: 0.08),
@@ -95,12 +114,20 @@ abstract final class AppTheme {
           fontSize: 14,
         ),
       ),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: AppColours.white,
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: AppColours.cream.withValues(alpha: 0.95),
         selectedItemColor: AppColours.saffron,
-        unselectedItemColor: AppColours.grey400,
+        unselectedItemColor: AppColours.grey600,
         type: BottomNavigationBarType.fixed,
-        elevation: 8,
+        elevation: 0,
+        selectedLabelStyle: GoogleFonts.poppins(
+          fontSize: 10,
+          fontWeight: FontWeight.w700,
+        ),
+        unselectedLabelStyle: GoogleFonts.poppins(
+          fontSize: 10,
+          fontWeight: FontWeight.w500,
+        ),
       ),
       chipTheme: ChipThemeData(
         backgroundColor: AppColours.saffronLight,

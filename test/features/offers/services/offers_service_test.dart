@@ -11,7 +11,7 @@ void main() {
   group('LocalOffersService', () {
     test('returns all offers', () async {
       final offers = await offersService.getOffers();
-      expect(offers, hasLength(5));
+      expect(offers, hasLength(6));
     });
 
     test('offers have required fields', () async {
@@ -21,7 +21,6 @@ void main() {
         expect(offer.id, isNotEmpty);
         expect(offer.title, isNotEmpty);
         expect(offer.tag, isNotEmpty);
-        expect(offer.imageUrl, isNotEmpty);
         expect(offer.active, isTrue);
       }
     });
@@ -42,7 +41,7 @@ void main() {
     });
 
     test('all tags are valid', () async {
-      final validTags = {'NEW', 'POPULAR', 'HOT', 'VALUE', 'DEAL'};
+      final validTags = {'NEW', 'POPULAR', 'HOT', 'VALUE', 'DEAL', 'SALE'};
       final offers = await offersService.getOffers();
 
       for (final offer in offers) {
@@ -51,12 +50,12 @@ void main() {
       }
     });
 
-    test('all image URLs are valid HTTPS URLs', () async {
+    test('all offers have tag colors', () async {
       final offers = await offersService.getOffers();
 
       for (final offer in offers) {
-        expect(offer.imageUrl.startsWith('https://'), isTrue,
-            reason: '${offer.imageUrl} should start with https://');
+        expect(offer.tagColor, isNonZero,
+            reason: '${offer.title} should have a tag color');
       }
     });
   });

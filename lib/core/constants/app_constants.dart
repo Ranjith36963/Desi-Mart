@@ -12,6 +12,11 @@ abstract final class AppConstants {
   static const double storeLng = -0.2283;
   static const String storeLogoUrl =
       'https://www.desi-mart.co.uk/ws/media-library/913205c8f5fb413a9f7bbf180006b476/desi-mart-logo.jpg';
+  static const String storeFacebookUrl =
+      'https://www.facebook.com/TheDesiMart/';
+
+  // Food hygiene
+  static const int foodHygieneRating = 5;
 
   // Opening hours: {day: [openHour, openMin, closeHour, closeMin]}
   static const Map<int, List<int>> storeHours = {
@@ -56,71 +61,75 @@ abstract final class AppConstants {
     {'emoji': '🍰', 'name': 'Sweets', 'count': '15+'},
   ];
 
-  // Brands stocked
+  // Brands stocked (matching prototype)
   static const List<String> brands = [
     "Haldiram's",
-    'Ramdev',
-    'Jaimin',
-    'Shankar',
-    'Top-Up',
-    'Telugu Foods',
-    'Tayyabah',
-    'Euro',
-    'Rasoi Magic',
-    'Jabsons',
-    'Jalpur',
-    'Everest',
-    'Garvi Gujarat',
-    'Gits',
-    'Jalsa',
-    'Kurkure',
-    'Pillsbury',
     'MTR',
-    'Real Bites',
-    'Saras',
+    'Tata',
+    'Everest',
+    'MDH',
     'Shana',
-    'Shayona',
-    'Shazan',
+    'TRS',
+    'Pataks',
     'Tilda',
+    'Gits',
+    'Jabsons',
+    'Kurkure',
+    'Parle',
+    'Maggi',
   ];
 
-  // Offers
+  // Offers — matching prototype exactly
   static const List<Map<String, String>> offers = [
-    {
-      'title': 'Karachi Bakery Biscuits',
-      'deal': '',
-      'tag': 'NEW',
-      'imageUrl':
-          'https://www.desi-mart.co.uk/ws/media-library/b7c9d688074a4e77b501fe6b54556820/karachi-bisc-offer.jpg',
-    },
-    {
-      'title': 'Parle-G Biscuits',
-      'deal': '',
-      'tag': 'POPULAR',
-      'imageUrl':
-          'https://www.desi-mart.co.uk/ws/media-library/37a97ba3e9094e189fc3d4c341eecaa3/parle-g.jpg',
-    },
     {
       'title': 'Maggi Noodles',
       'deal': '4 for £1',
       'tag': 'HOT',
-      'imageUrl':
-          'https://www.desi-mart.co.uk/ws/media-library/f65e4c21b82c4040b235527dfb6aa156/maggi-4-for-ps1.jpg',
+      'color': '0xFFE53E3E',
     },
     {
-      'title': 'Jabsons',
-      'deal': '',
+      'title': 'Parle-G Biscuits',
+      'deal': 'Buy 2 Get 1 Free',
+      'tag': 'POPULAR',
+      'color': '0xFFDD6B20',
+    },
+    {
+      'title': 'Karachi Bakery Biscuits',
+      'deal': '20% Off',
+      'tag': 'NEW',
+      'color': '0xFF2D7A3A',
+    },
+    {
+      'title': 'Jabsons Peanuts',
+      'deal': '£1.49 each',
       'tag': 'VALUE',
-      'imageUrl':
-          'https://www.desi-mart.co.uk/ws/media-library/4bd997e93f164edf88595b7442463ccb/jabsons.jpg',
+      'color': '0xFF3182CE',
     },
     {
-      'title': 'Jalsa',
-      'deal': '',
+      'title': 'Jalsa Snacks',
+      'deal': '3 for £2.50',
       'tag': 'DEAL',
-      'imageUrl':
-          'https://www.desi-mart.co.uk/ws/media-library/6cca187d5b0f4b16b931ef4fd54e3fbc/jalsa.jpg',
+      'color': '0xFF805AD5',
     },
+    {
+      'title': "Haldiram's Namkeen",
+      'deal': '15% Off All Packs',
+      'tag': 'SALE',
+      'color': '0xFFE53E3E',
+    },
+  ];
+
+  // Loyalty
+  static const int totalStamps = 10;
+  static const double stampThreshold = 5.0; // £5 per stamp
+  static const String memberId = 'DM-2024-0847';
+
+  // Quick actions
+  static const List<Map<String, String>> quickActions = [
+    {'emoji': '📞', 'label': 'Call Store', 'sub': '01707 257328'},
+    {'emoji': '📍', 'label': 'Directions', 'sub': 'Hatfield Town Centre'},
+    {'emoji': '📧', 'label': 'Email Us', 'sub': 'Quick enquiry'},
+    {'emoji': '🕐', 'label': 'Store Hours', 'sub': 'Mon-Sat 9-7'},
   ];
 
   // Auth

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colours.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../shared/widgets/loading_indicator.dart';
 import '../providers/offers_provider.dart';
 import '../widgets/offer_card.dart';
@@ -37,74 +38,50 @@ class OffersScreen extends ConsumerWidget {
             ),
           ),
           data: (offers) {
-            final activeOffers =
-                offers.where((o) => o.active).toList();
+            final activeOffers = offers.where((o) => o.active).toList();
 
-            return CustomScrollView(
-              slivers: [
-                // Header
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Current Offers',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
-                              ?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: AppColours.saffronLight,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Text(
-                            '${activeOffers.length} Active',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium
-                                ?.copyWith(
-                                  color: AppColours.saffron,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
-                        ),
-                      ],
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Header
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+                    child: Text(
+                      'Latest Offers',
+                      style: AppTheme.playfair(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                        color: AppColours.darkText,
+                      ),
                     ),
                   ),
-                ),
-
-                // Subtitle
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 2, 16, 12),
                     child: Text(
-                      'Don\'t miss out on these amazing deals!',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      'Updated weekly · ${activeOffers.length} active deals',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            fontSize: 12,
                             color: AppColours.grey600,
                           ),
                     ),
                   ),
-                ),
 
-                // Offer cards
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) =>
-                        OfferCard(offer: activeOffers[index]),
-                    childCount: activeOffers.length,
+                  // Offer cards
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      children: [
+                        for (final offer in activeOffers) ...[
+                          OfferCard(offer: offer),
+                          const SizedBox(height: 10),
+                        ],
+                      ],
+                    ),
                   ),
-                ),
-
-                const SliverToBoxAdapter(
-                  child: SizedBox(height: 24),
-                ),
-              ],
+                  const SizedBox(height: 20),
+                ],
+              ),
             );
           },
         ),

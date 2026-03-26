@@ -9,18 +9,22 @@ abstract final class AppColours {
 
   // Saffron shades
   static const Color saffronLight = Color(0xFFFFF3EB);
-  static const Color saffronDark = Color(0xFFCC5F1E);
+  static const Color saffronDark = Color(0xFFC45D1E);
 
   // Green shades
-  static const Color greenLight = Color(0xFFE8F5E9);
-  static const Color greenDark = Color(0xFF1B5E20);
+  static const Color greenLight = Color(0xFFE8F5EA);
+  static const Color greenDark = Color(0xFF1B5E25);
 
-  // Neutral
-  static const Color grey100 = Color(0xFFF5F5F5);
-  static const Color grey200 = Color(0xFFEEEEEE);
-  static const Color grey400 = Color(0xFFBDBDBD);
-  static const Color grey600 = Color(0xFF757575);
-  static const Color grey800 = Color(0xFF424242);
+  // Gold (loyalty/rewards)
+  static const Color gold = Color(0xFFD4A017);
+  static const Color goldLight = Color(0xFFFFF8E1);
+
+  // Neutral — match prototype exactly
+  static const Color grey100 = Color(0xFFF3F4F6);
+  static const Color grey200 = Color(0xFFE5E7EB);
+  static const Color grey400 = Color(0xFF9CA3AF);
+  static const Color grey600 = Color(0xFF6B7280);
+  static const Color grey800 = Color(0xFF374151);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
 
@@ -48,8 +52,13 @@ abstract final class AppColours {
         return tagValue;
       case 'DEAL':
         return tagDeal;
+      case 'SALE':
+        return tagHot;
       default:
         return saffron;
     }
   }
+
+  // Status indicator
+  static const Color openGreen = Color(0xFF4ADE80);
 }

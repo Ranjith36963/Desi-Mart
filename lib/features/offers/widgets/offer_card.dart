@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colours.dart';
@@ -11,116 +10,87 @@ class OfferCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tagColor = AppColours.tagColour(offer.tag);
-
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppColours.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: AppColours.black.withValues(alpha: 0.06),
-            blurRadius: 10,
-            offset: const Offset(0, 3),
+    return Material(
+      color: AppColours.white,
+      borderRadius: BorderRadius.circular(14),
+      child: InkWell(
+        onTap: () {},
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: AppColours.grey100),
           ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
-        child: Row(
-          children: [
-            // Product image
-            CachedNetworkImage(
-              imageUrl: offer.imageUrl,
-              width: 110,
-              height: 110,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => Container(
-                width: 110,
-                height: 110,
-                color: AppColours.grey100,
-                child: const Center(
-                  child: CircularProgressIndicator(
-                    color: AppColours.saffron,
-                    strokeWidth: 2,
-                  ),
-                ),
-              ),
-              errorWidget: (context, url, error) => Container(
-                width: 110,
-                height: 110,
-                color: AppColours.grey100,
-                child: const Icon(
-                  Icons.image_not_supported_outlined,
-                  color: AppColours.grey400,
-                  size: 32,
-                ),
-              ),
-            ),
-
-            // Content
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(14),
+          child: Row(
+            children: [
+              // Content
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Tag badge
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: tagColor.withValues(alpha: 0.12),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        offer.tag,
-                        style:
-                            Theme.of(context).textTheme.labelSmall?.copyWith(
-                                  color: tagColor,
+                    // Tag + title row
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 7, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: offer.tagColorValue,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            offer.tag,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                  fontSize: 9,
                                   fontWeight: FontWeight.w700,
+                                  color: AppColours.white,
                                   letterSpacing: 0.5,
                                 ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-
-                    // Title
-                    Text(
-                      offer.title,
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            fontWeight: FontWeight.w600,
                           ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            offer.title,
+                            style:
+                                Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColours.darkText,
+                                    ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
                     ),
-
-                    // Deal text
                     if (offer.deal.isNotEmpty) ...[
                       const SizedBox(height: 4),
+                      // Deal text
                       Text(
                         offer.deal,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
                               color: AppColours.saffron,
-                              fontWeight: FontWeight.w700,
                             ),
                       ),
                     ],
                   ],
                 ),
               ),
-            ),
-
-            // Arrow
-            const Padding(
-              padding: EdgeInsets.only(right: 12),
-              child: Icon(
+              // Chevron
+              const Icon(
                 Icons.chevron_right,
-                color: AppColours.grey400,
+                color: AppColours.grey600,
+                size: 20,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

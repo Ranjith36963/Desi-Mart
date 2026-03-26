@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colours.dart';
+import '../../../core/theme/app_theme.dart';
 
 class CategoryChips extends StatelessWidget {
   const CategoryChips({super.key});
@@ -12,21 +13,23 @@ class CategoryChips extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 20, bottom: 12),
+          padding: const EdgeInsets.only(left: 16, bottom: 12),
           child: Text(
-            'Browse Categories',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            'Shop by Category',
+            style: AppTheme.playfair(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: AppColours.darkText,
+            ),
           ),
         ),
         SizedBox(
-          height: 100,
+          height: 90,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: AppConstants.categories.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            separatorBuilder: (_, __) => const SizedBox(width: 8),
             itemBuilder: (context, index) {
               final category = AppConstants.categories[index];
               return _CategoryChip(
@@ -56,28 +59,23 @@ class _CategoryChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 90,
+      width: 72,
       decoration: BoxDecoration(
         color: AppColours.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: AppColours.black.withValues(alpha: 0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: AppColours.grey100),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 28)),
-          const SizedBox(height: 6),
+          Text(emoji, style: const TextStyle(fontSize: 24)),
+          const SizedBox(height: 4),
           Text(
             name,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   fontWeight: FontWeight.w600,
-                  fontSize: 12,
+                  fontSize: 10,
+                  color: AppColours.darkText,
                 ),
             textAlign: TextAlign.center,
           ),
@@ -85,7 +83,7 @@ class _CategoryChip extends StatelessWidget {
             count,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColours.grey600,
-                  fontSize: 10,
+                  fontSize: 9,
                 ),
           ),
         ],

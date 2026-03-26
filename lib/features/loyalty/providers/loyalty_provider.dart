@@ -1,12 +1,5 @@
-// TODO: Implement loyalty card state management
-//
-// This provider will manage:
-// - Current stamp count for the authenticated user
-// - Stamp history / activity log
-// - Reward redemption state
-// - Loyalty tier status
-//
-// Expected providers:
-// - loyaltyStampsProvider: StreamProvider watching user's stamp count from Firestore
-// - stampHistoryProvider: FutureProvider fetching stamp_log collection
-// - redeemRewardProvider: StateNotifier for handling reward redemption flow
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+/// Current stamp count for the user.
+/// Starts at 6 (demo) — in production, read from Firestore.
+final stampCountProvider = StateProvider<int>((ref) => 6);

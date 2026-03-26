@@ -21,7 +21,7 @@ class LocalOffersService implements OffersService {
         title: data['title']!,
         deal: data['deal'] ?? '',
         tag: data['tag']!,
-        imageUrl: data['imageUrl']!,
+        tagColor: int.tryParse(data['color'] ?? '') ?? 0xFFE8722A,
       );
     }).toList();
   }
